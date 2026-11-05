@@ -11,6 +11,10 @@ class NotifyService {
     _init = true;
 
     tz_data.initializeTimeZones();
+    // GitHub Actions 的 Linux runner 没有时区数据库，下面这行失败时不能让整次初始化中断
+    try {
+      tz.setLocalLocation(tz.getLocation('Asia/Shanghai'));
+    } catch (_) {}
 
     const android = AndroidInitializationSettings('@mipmap/ic_launcher');
     await _n.initialize(const InitializationSettings(android: android));
@@ -33,6 +37,9 @@ class NotifyService {
     String body,
     DateTime when,
   ) async {
+    // 已过去的时刻不能再排期，直接跳过
+    if (!when.isAfter(DateTime.now())) return;
+
     final tzTime = tz.TZDateTime.from(when, tz.local);
 
     await _n.zonedSchedule(
@@ -46,9 +53,12 @@ class NotifyService {
           '日厤提醒',
           channelDescription: '日程与纪念日提醒',
           importance: Importance.high,
+          priority: Priority.high,
         ),
       ),
       androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
+      uiLocalNotificationDateInterpretation:
+          UILocalNotificationDateInterpretation.absoluteTime,
     );
   }
 
