@@ -1,3 +1,5 @@
+import org.gradle.api.tasks.Delete
+
 buildscript {
     repositories {
         google()
