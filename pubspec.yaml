@@ -1,0 +1,27 @@
+name: rili
+description: 日厤 · 黄历日历与岁时记录
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  lunar: ^1.7.7
+  sqflite: ^2.3.0
+  path: ^1.8.3
+  flutter_local_notifications: ^18.0.0
+  shared_preferences: ^2.2.0
+  http: ^1.1.0
+  timezone: ^0.9.4
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/data/solar_terms.json
+    - assets/data/festivals.json
+    - assets/data/holidays_2026.json
+    # 云端更新后会生成 holidays_cache.json：HolidayUpdateService 写入后，
+    # 在此加一行  - assets/data/holidays_cache.json 即可优先使用（文件不存在时加了会启动失败）
+    - assets/data/history/

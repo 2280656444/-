@@ -1,0 +1,5 @@
+<resources>
+    <style name="LaunchTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:statusBarColor">#4E342E</item>
+    </style>
+</resources>

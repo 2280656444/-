@@ -1,0 +1,13 @@
+[
+  { "key": "yuandan",   "name": "元旦",   "type": "festival", "summary": "公历新年第一天", "origin": "中华民国起采用公历，将1月1日定为元旦", "custom": "跨年、放假", "poem": "元日到人日，未有不阴时" },
+  { "key": "chunjie",   "name": "春节",   "type": "festival", "summary": "农历新年，最重要的传统节日", "origin": "源自上古岁首祈年祭祀", "custom": "贴春联、守岁、拜年、压岁钱", "poem": "爆竹声中一岁除，春风送暖入屠苏" },
+  { "key": "yuanxiao",  "name": "元宵节", "type": "festival", "summary": "正月十五，新年第一个月圆夜", "origin": "汉文帝时为庆祝平定诸吕之乱，将正月十五定为与民同乐日", "custom": "赏花灯、吃汤圆、猜灯谜", "poem": "东风夜放花千树，更吹落、星如雨" },
+  { "key": "qingmingj", "name": "清明节", "type": "festival", "summary": "祭祖扫墓、踏青郊游", "origin": "融合寒食节与上巳节习俗", "custom": "扫墓、踏青、插柳", "poem": "清明时节雨纷纷，路上行人欲断魂" },
+  { "key": "duanwu",    "name": "端午节", "type": "festival", "summary": "五月初五，纪念屈原", "origin": "战国时期楚国诗人屈原于此日投汨罗江", "custom": "赛龙舟、吃粽子、挂艾草", "poem": "节分端午自谁言，万古传闻为屈原" },
+  { "key": "qixi",      "name": "七夕",   "type": "festival", "summary": "七月初七，中国情人节", "origin": "牛郎织女鹊桥相会的传说", "custom": "乞巧、拜织女", "poem": "两情若是久长时，又岂在朝朝暮暮" },
+  { "key": "zhongqiu",  "name": "中秋节", "type": "festival", "summary": "八月十五，团圆赏月", "origin": "源于古代秋夕祭月", "custom": "赏月、吃月饼、提灯笼", "poem": "但愿人长久，千里共婵娟" },
+  { "key": "chongyang", "name": "重阳节", "type": "festival", "summary": "九月初九，敬老登高", "origin": "《易经》以九为阳数，两九相重故称重九", "custom": "登高、赏菊、插茱萸、敬老", "poem": "独在异乡为异客，每逢佳节倍思亲" },
+  { "key": "dongzhi",   "name": "冬至节", "type": "festival", "summary": "冬至大如年", "origin": "周代以冬至为岁首，汉代起为冬节", "custom": "北方吃饺子，南方吃汤圆", "poem": "邯郸驿里逢冬至，抱膝灯前影伴身" },
+  { "key": "laba",      "name": "腊八节", "type": "festival", "summary": "腊月初八，过了腊八就是年", "origin": "古代腊祭，后与佛教释迦牟尼成道日融合", "custom": "喝腊八粥、泡腊八蒜", "poem": "腊八家家煮粥多，大臣特派到雍和" },
+  { "key": "chuxi",     "name": "除夕",   "type": "festival", "summary": "岁末最后一天，辞旧迎新", "origin": "源自先秦逐除之俗", "custom": "年夜饭、守岁、贴春联", "poem": "故乡今夜思千里，霜鬓明朝又一年" }
+]
