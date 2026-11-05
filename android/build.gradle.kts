@@ -1,42 +1,19 @@
-import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
+import org.gradle.api.tasks.Delete
 
+// 顶层插件声明（Flutter 3.24 新架构必须这样写）
 plugins {
-    id("com.android.application")
-    id("kotlin-android")
-    id("dev.flutter.flutter-gradle-plugin")
+    id("com.android.application") version "8.1.0" apply false
+    id("org.jetbrains.kotlin.android") version "1.9.22" apply false
+    id("dev.flutter.flutter-gradle-plugin") version "1.0.0" apply false
 }
 
-android {
-    namespace = "androidx.compose.material3.demos"
-    compileSdk = 34
-
-    defaultConfig {
-        applicationId = "androidx.compose.material3.demos"
-        minSdk = 21
-        targetSdk = 34
-        versionCode = 1
-        versionName = "1.0"
-    }
-
-    buildTypes {
-        release {
-            signingConfig = signingConfigs.getByName("debug")
-            isMinifyEnabled = false
-            isShrinkResources = false
-        }
-    }
-
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
-    }
-
-    kotlinOptions {
-        jvmTarget = "17"
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
     }
 }
 
-dependencies {
-    implementation("androidx.core:core-ktx:1.12.0")
-    implementation("androidx.appcompat:appcompat:1.6.1")
+tasks.register("clean", Delete::class) {
+    delete(rootProject.buildDir)
 }
