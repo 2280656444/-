@@ -1,23 +1,42 @@
-import org.gradle.api.tasks.Delete
+import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
 
-buildscript {
-    repositories {
-        google()
-        mavenCentral()
+plugins {
+    id("com.android.application")
+    id("kotlin-android")
+    id("dev.flutter.flutter-gradle-plugin")
+}
+
+android {
+    namespace = "androidx.compose.material3.demos"
+    compileSdk = 34
+
+    defaultConfig {
+        applicationId = "androidx.compose.material3.demos"
+        minSdk = 21
+        targetSdk = 34
+        versionCode = 1
+        versionName = "1.0"
     }
-    dependencies {
-        classpath("com.android.tools.build:gradle:8.1.0")
-        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.9.22")
+
+    buildTypes {
+        release {
+            signingConfig = signingConfigs.getByName("debug")
+            isMinifyEnabled = false
+            isShrinkResources = false
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
+    }
+
+    kotlinOptions {
+        jvmTarget = "17"
     }
 }
 
-allprojects {
-    repositories {
-        google()
-        mavenCentral()
-    }
-}
-
-tasks.register("clean", Delete::class) {
-    delete(rootProject.buildDir)
+dependencies {
+    implementation("androidx.core:core-ktx:1.12.0")
+    implementation("androidx.appcompat:appcompat:1.6.1")
 }
