@@ -1,4 +1,4 @@
-package com.yourname.rili
+package 日厤
 
 import io.flutter.embedding.android.FlutterActivity
 
