@@ -24,7 +24,7 @@ jobs:
           flutter-version: '3.24.5'
           channel: stable
 
-      - - name: 生成历史上的今天数据
+      - name: 生成历史上的今天数据
         run: timeout 120 python3 tools/gen_history.py || echo "跳过历史数据"
         continue-on-error: true
 
