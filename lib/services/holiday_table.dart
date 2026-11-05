@@ -4,9 +4,10 @@ import 'package:flutter/services.dart' show rootBundle;
 /// 法定节假日 / 调休补班表
 /// 数据格式：{ "year": 2026, "days": { "2026-01-01": {"type":"holiday","name":"元旦"}, "2026-02-14": {"type":"workday","name":"春节调休"} } }
 class HolidayTable {
-  final Map<String, String> _holiday = {}; // 放假
-  final Map<String, String> _work = {};    // 补班
+  final Map<String, String> _holiday; // 放假
+  final Map<String, String> _work;    // 补班
 
+  // 注意：_holiday / _work 没有默认值，才能在构造参数里用 this._holiday 赋值
   HolidayTable._(this._holiday, this._work);
 
   factory HolidayTable.empty() => HolidayTable._({}, {});
@@ -18,17 +19,7 @@ class HolidayTable {
     for (final y in [DateTime.now().year, DateTime.now().year + 1]) {
       try {
         final s = await rootBundle.loadString('assets/data/holidays_$y.json');
-        final j = jsonDecode(s);
-        final days = j['days'] as Map<String, dynamic>? ?? {};
-        days.forEach((k, v) {
-          final type = v['type'] as String?;
-          final name = v['name'] as String? ?? '';
-          if (type == 'holiday') {
-            allH[k] = name;
-          } else if (type == 'workday') {
-            allW[k] = name;
-          }
-        });
+        _merge(s, allH, allW);
       } catch (_) {
         // 该年份没有内置文件
       }
@@ -36,19 +27,27 @@ class HolidayTable {
     // 云端最新数据优先覆盖（HolidayUpdateService 下载后写入 cache）
     try {
       final s = await rootBundle.loadString('assets/data/holidays_cache.json');
-      final j = jsonDecode(s);
-      final days = j['days'] as Map<String, dynamic>? ?? {};
-      days.forEach((k, v) {
-        final type = v['type'] as String?;
-        final name = v['name'] as String? ?? '';
-        if (type == 'holiday') {
-          allH[k] = name;
-        } else if (type == 'workday') {
-          allW[k] = name;
-        }
-      });
+      _merge(s, allH, allW);
     } catch (_) {}
+
     return HolidayTable._(allH, allW);
+  }
+
+  static void _merge(String s, Map<String, String> allH, Map<String, String> allW) {
+    final decoded = jsonDecode(s);
+    if (decoded is! Map) return;
+    final days = decoded['days'];
+    if (days is! Map) return;
+    days.forEach((k, v) {
+      if (v is! Map) return;
+      final type = v['type']?.toString();
+      final name = v['name']?.toString() ?? '';
+      if (type == 'holiday') {
+        allH[k.toString()] = name;
+      } else if (type == 'workday') {
+        allW[k.toString()] = name;
+      }
+    });
   }
 
   bool isHoliday(String key) => _holiday.containsKey(key);
