@@ -3,17 +3,15 @@ import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
 plugins {
     id("com.android.application")
     id("kotlin-android")
-    // 如果有 Flutter 插件自动生成，保留 id("dev.flutter.flutter-gradle-plugin")
     id("dev.flutter.flutter-gradle-plugin")
 }
 
 android {
-    // 必须明确声明 namespace（替代旧 Manifest 里的 package）
-    namespace = "com.example.rili"
+    namespace = "androidx.compose.material3.demos"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "日厤"
+        applicationId = "androidx.compose.material3.demos"
         minSdk = 21
         targetSdk = 34
         versionCode = 1
@@ -22,7 +20,6 @@ android {
 
     buildTypes {
         release {
-            // 签名配置：若 GitHub Actions 用了签名，保持你原有的 signingConfigs
             signingConfig = signingConfigs.getByName("debug")
             isMinifyEnabled = false
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
