@@ -5,11 +5,11 @@ plugins {
 }
 
 android {
-    namespace = "androidx.compose.material3.demos"
+    namespace = "com.yourname.rili"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "androidx.compose.material3.demos"
+        applicationId = "com.yourname.rili"
         minSdk = 21
         targetSdk = 34
         versionCode = 1
