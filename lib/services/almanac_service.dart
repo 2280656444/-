@@ -26,15 +26,17 @@ class AlmanacService {
 
     final zhiShen = lunar.getDayTianShen();
     final xiu = '${lunar.getXiu()}${lunar.getZheng()}${lunar.getAnimal()}';
-    final taiShen = lunar.getTaiShen().join('、');
-    final jiShen = lunar.getDayJiShenLunar().join('、');
-    final xiongSha = lunar.getDayXiongShaLunar().join('、');
+    // 胎神方位（lunar 包里叫 getDayPositionTai，返回 String）
+    final taiShen = lunar.getDayPositionTai();
+    // 吉神宜趋 / 凶煞宜忌：没有的日期包里返回 ['无']
+    final jiShen = lunar.getDayJiShen().join('、');
+    final xiongSha = lunar.getDayXiongSha().join('、');
 
-    // 当天没有节气时 getJieQi 为空，用前一个/后一个节气补位
+    // 当天没有节气时 getJieQi 为空，用前一个节气补位
     var termName = lunar.getJieQi();
     if (termName.isEmpty) {
       final prev = lunar.getPrevJieQi(true);
-      termName = '${prev.getName()}·${prev.getSolar().getDay()}日';
+      termName = prev.getName();
     }
 
     final festivals = solar.getFestivals().toList(); // 公历节日
